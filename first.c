@@ -2,6 +2,6 @@
 
 int main()
 {
-    printf("hellocorona");
+    printf("hello corona vairus!");
     return 0;
 }
