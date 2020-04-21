@@ -3,6 +3,7 @@ from pyzbar.pyzbar import decode
 from PIL import Image
 from os import system
 from time import time
+from time import sleep
 
 def refreshwindow():
     global currwindow
@@ -20,6 +21,7 @@ def job():
     QR = decode(Image.open('/home/pi/proj/rbpipic.jpg'))
 
     if len(QR) != 0:
+        print('This was not supposed to show up until a QR got scanned')
         if sync:
             if QR[0].data == syncQR and cyclecount > 0:
                 system('shutdown now')
@@ -53,6 +55,8 @@ def job():
                 sync = True
 
 #main-------------
+
+sleep(30)
 
 sync = False
 
