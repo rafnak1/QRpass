@@ -1,1 +1,1 @@
-Esse diretório é para o site da QRpass.
+Esse diretório é para o leitor de QR code.
