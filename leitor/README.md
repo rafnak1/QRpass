@@ -1,1 +1,1 @@
-Esse diretório é para o programa que vai rodar no raspberry.
+Esse diretório é para o site da QRpass.
