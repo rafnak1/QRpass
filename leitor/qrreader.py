@@ -30,7 +30,8 @@ def job():
                 
                 with open('/home/pi/proj/response', 'rb') as resp:
                     response = resp.read()
-                if response == b'no match':
+
+                if response == b'no match\n':
                     currwindow = '/home/pi/proj/nousrmatch.html'
                     refreshwindow()
 
