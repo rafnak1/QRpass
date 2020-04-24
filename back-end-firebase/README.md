@@ -1,1 +1,1 @@
-Esse diretório conterá o código do servidor remoto.
+Esse diretório conterá o código realcionado às funções do banco de dados.
