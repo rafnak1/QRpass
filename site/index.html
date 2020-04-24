@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@page contentType="text/html" import="java.util.*, java.text.*" pageEncoding="ISO-8859-1"%>
+ 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
     <meta charset="utf-8">
@@ -14,6 +17,7 @@
     <script defer src="/__/firebase/7.14.1/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
+    
 
     <style media="screen">
       body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -35,7 +39,15 @@
       <h2>Welcome</h2>
       <h1>Testando a realocacao dos arquivos</h1>
       <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://qrpass-9dcb0.web.app/site/PageTeste.html">Proxima pagina</a>
+      <a target="_blank" href="../Back-end/Teste.cs">Proxima pagina</a>
+      <%@include file="../Back-end/Teste.jsp"%>
+        <form action="../Back-end/Teste.jsp" method="post">
+            Nome:<input type="text" name="txtnome"/><br>
+            E-Mail:<input type="text" name="txtemail"/><br>
+            Data de Nascimento:<input type="text" name="txtdtnasc"/><br>
+            <input type="submit" value="Enviar"/>
+ 
+        </form>
     </div>
     <p id="load">Firebase SDK Loading&hellip;</p>
 
