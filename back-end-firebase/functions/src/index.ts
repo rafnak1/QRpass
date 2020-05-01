@@ -1,7 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
 admin.initializeApp()
-
  // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
 
@@ -11,8 +10,13 @@ admin.initializeApp()
   //GetGuest;
  });
 
+ export const AddGuest = functions.https.onRequest((request, response) => {
+
+});
+
  export const GetGuest = functions.https.onRequest((request, response) => {
-  const promise = admin.firestore().doc('Convidado/IZIwkK6GnseQJ5OGSjdY').get()
+  var Id_User;
+  const promise = admin.firestore().doc('Convidado/'+Id_User).get()
   const p2 = promise.then(snapshot => {
       const data = snapshot.data()
       response.send(data)
@@ -24,3 +28,4 @@ admin.initializeApp()
   })
 
 });
+

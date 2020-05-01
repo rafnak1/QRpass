@@ -5,5 +5,99 @@
 </ion-header>
 
 <ion-content>
-
+  <div class="grid-container">
+  
+    <!--Input para cadastrar novos sorvetes-->
+     
+    <div class="container-input" >     
+       <h1 class="mat-h1">Cadastre a categoria do Icecream</h1>
+       
+       <mat-form-field appearance="outline" class="padding-form">
+           <mat-label>Nome</mat-label>
+           <input matInput type="text" class="form-control" [(ngModel)]="icecreamName" placeholder="Nome do Sorvete">
+           <mat-icon matSuffix>spa</mat-icon>
+           <mat-hint>Dê um nome a sua criação</mat-hint>
+         </mat-form-field>                      
+            
+         <mat-form-field appearance="outline"  class="padding-form">
+             <mat-label>Calorias</mat-label>
+             <input matInput type="text" class="form-control" [(ngModel)]="icecreamCalories" placeholder="Calorias">
+             <mat-icon matSuffix>deck</mat-icon>
+             <mat-hint>Quantidade de calorias</mat-hint>
+           </mat-form-field>
+      
+           <mat-form-field appearance="outline"  class="padding-form">
+               <mat-label>Descrição</mat-label>
+               <input matInput type="text" class="form-control" [(ngModel)]="icecreamDescription" placeholder="Ingredientes">
+               <mat-icon matSuffix>cake</mat-icon>
+               <mat-hint>Quais os ingredientes?</mat-hint>
+             </mat-form-field>
+         
+ 
+         <div class="container-input" class="button-row">
+                   <button mat-raised-button color="warn" type="button" (click)="CreateRecord()" [disabled]="!icecreamName || !icecreamCalories|| !icecreamDescription" class="btn btn-primary">
+                     Cadastrar </button>
+         </div>  
+    
+    </div>
+ 
+  <mat-grid-list cols="2" rowHeight="250px">  
+                
+   <!--Lista os já criados-->
+  <mat-grid-tile *ngFor="let item of icecreams">
+      <mat-card class="dashboard-card" *ngIf="!item.isEdit; else elseBlock">
+          <mat-card-header>
+             
+              <mat-card-title>{{item.Name}}
+              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" xPosition="before">
+                <button mat-menu-item (click)="EditRecord(item)">Editar</button>
+                <button mat-menu-item (click)="RemoveRecord(item.id)">Deletar</button>
+              </mat-menu>
+              
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-subtitle>{{item.Calories}} calorias</mat-card-subtitle>
+ 
+     <mat-divider></mat-divider>
+          <mat-card-content class="dashboard-card-content">
+            <div class="padding-description">
+                Descrição: {{item.Description}}
+            </div> 
+          </mat-card-content>
+          
+         
+      </mat-card>
+      <ng-template #elseBlock>
+         <!-- Edicação de Exclusão do Icecream-->
+        <mat-card>
+          <mat-form-field appearance="outline" class="padding-form">
+              <mat-label>Nome</mat-label>
+              <input matInput type="text" class="form-control" [(ngModel)]="item.EditName" placeholder="Editar Nome">
+              <mat-icon matSuffix>spa</mat-icon>
+          </mat-form-field> 
+ 
+          <mat-form-field appearance="outline" class="padding-form">
+              <mat-label>Calorias</mat-label>
+              <input matInput type="text" class="form-control"  [(ngModel)]="item.EditCalories" placeholder="Editar Calorias">
+              <mat-icon matSuffix>deck</mat-icon>
+            </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="padding-form">
+              <mat-label>Descrição</mat-label>
+              <input matInput type="text" class="form-control" [(ngModel)]="item.EditDescription" placeholder="Editar Descrição">
+              <mat-icon matSuffix>cake</mat-icon>
+          </mat-form-field>
+      <div class="button-row"> 
+          <button  mat-raised-button color="warn" (click)="item.isEdit = false">Cancelar</button>
+          <button  mat-raised-button color="accent" (click)="UpdateRecord(item)">Atualizar</button> 
+      </div>
+     
+    </mat-card>
+  </ng-template>
+    </mat-grid-tile> 
+  </mat-grid-list>
+ </div> 
 </ion-content>
