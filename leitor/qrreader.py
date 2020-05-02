@@ -7,7 +7,7 @@ from time import sleep
 
 gui_app = 'feh'
 kiosk_switch = '-F -Z'
-server_url = 'https://ilhabela-c33df.web.app/?q='
+server_url = 'https://ilhabela-c33df.web.app/?qr='
 path = '/home/pi/proj/'
 
 no_usr_match = 'nousrmatch.html'
