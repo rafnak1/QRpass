@@ -1,11 +1,13 @@
 import os
 import time
 
+path = '/home/pi/QRpass/'
+
 time.sleep(30)
 
 while True:
 
-    with open('order') as order:
+    with open('window-order') as order:
         window = order.read()
 
-    os.system('feh ' + window + ' -F -Z')
+    os.system('feh '+ path + window + ' -F -Z')

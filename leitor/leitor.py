@@ -28,12 +28,12 @@ def readResponse():
 def curlToServer(payload):
     global server_url
     global path
-    system('curl ' + server_url + payload + ' -o ' + path + 'response')
+    system('curl ' + server_url + str(payload, 'utf-8') + ' -o ' + path + 'response')
 
 def refreshWindow(new_window):
     global gui_app
 
-    with open('window', 'w') as order:
+    with open('window-order', 'w') as order:
         order.write(new_window)
 
     system('wmctrl -c ' + gui_app)
@@ -45,6 +45,7 @@ def preSync():
     global no_event_match
     global event_found
     global synced
+    global sync_QR
 
     curlToServer(QR[0].data)
             
@@ -63,8 +64,10 @@ def postSync():
     global cycle_count
     global no_usr_match
 
+    #It should turn off when the sync QR is shown once again.
     if QR[0].data == sync_QR and cycle_count > 0:
         system('shutdown now')
+    
     else:   
         #send qr data in GET request; let's see if it's a valid user QR...
         curlToServer(QR[0].data) 
@@ -108,5 +111,6 @@ while True:
     
     #refreshes window every 30 seconds
     system('wmctrl -c ' + gui_app)
-
-    cycle_count += 1
+    
+    if synced:
+        cycle_count += 1
