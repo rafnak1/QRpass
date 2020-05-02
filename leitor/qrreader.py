@@ -5,80 +5,97 @@ from os import system
 from time import time
 from time import sleep
 
-def refreshwindow():
-    global currwindow
-    system('wmctrl -c firefox')
-    system('firefox ' + currwindow + ' kiosk')
+gui_app = 'firefox'
+kiosk_switch = 'kiosk'
+server_url = 'https://ilhabela-c33df.web.app/?q='
+path = '/home/pi/proj/'
+
+no_usr_match = 'nousrmatch.html'
+no_event_match = 'noeventmatch.html'
+event_found = 'eventlocked.html'
+off_sync = 'offsync.html'
+
+def readResponse():
+    global path
+    with open(path + 'response', 'rb') as resp:
+        response = resp.read()
+    return response
+
+def curlToServer(payload):
+    global server_url
+    global path
+    system('curl ' + server_url + payload + ' -o ' + path + 'response')
+
+def refreshWindow():
+    global gui_app
+    global current_window
+    global kisk_switch
+    system('wmctrl -c ' + gui_app)
+    system(gui_app + ' ' + current_window + ' ' + kiosk_switch)
 
 def job():
-    global cyclecount
-    global sync
-    global currwindow
+    global cycle_count
+    global synced
+    global current_window
+    global server_url
+    global path
+    global sync_QR
+    
+    camera.capture('rbpic.jpg')
+    QR = decode(Image.open(path + 'rbpic.jpg'))
 
-    serverurl = 'https://ilhabela-c33df.web.app/'
-
-    camera.capture('rbpipic.jpg')
-    QR = decode(Image.open('/home/pi/proj/rbpipic.jpg'))
-
-    if len(QR) != 0:
-        print('This was not supposed to show up until a QR got scanned')
-        if sync:
-            if QR[0].data == syncQR and cyclecount > 0:
+    if len(QR) != 0:       
+        if synced:
+            if QR[0].data == sync_QR and cycle_count > 0:
                 system('shutdown now')
             else:   #send qr data in GET request
-                system('curl ' + serverurl + '?'+ 'q=' + str(QR[0].data, 'utf-8') + ' -o response')
-                
-                with open('/home/pi/proj/response', 'rb') as resp:
-                    response = resp.read()
+                curlToServer(QR[0].data) 
 
-                if response == b'no match\n':
-                    currwindow = '/home/pi/proj/nousrmatch.html'
-                    refreshwindow()
+                if readResponse == b'no match\n':
+                    current_window = path + no__usr_match
+                    refreshWindow()
 
                 else:   #if response isn't "no match", then it must have found a picture.
-                    currwindow = '/home/pi/proj/response'
-                    refreshwindow()
+                    current_window = path + response
+                    refreshWindow()
+        
         else:
-            #send qr data in GET request
-            system('curl ' + serverurl + '?' + 'q=' + str(QR[0].data, 'utf-8') + ' -o response')
-            
-            with open('/home/pi/proj/response', 'rb') as resp:
-                response = resp.read()
-            
-            if response == b'no match':
-                currwindow = '/home/pi/proj/noeventmatch.html'
-                refresh()
+            curlToServer(QR[0].data)
+                        
+            if readResponse() == b'no match':
+                current_window = path + no_event_match
+                refreshWindow()
             
             else:
-                currwindow = '/home/pi/proj/eventlocked.html'
-                refresh()
-                syncQR = QR[0].data
-                sync = True
+                current_window = path + event_found 
+                refreshWindow()
+                sync_QR = QR[0].data
+                synced = True
 
 #main-------------
 
-sleep(30)
+sleep(27)
 
-sync = False
+updateWindow(off_sync)
+
+sync_QR = b'0'
+synced = False
 
 #prepare camera
 camera = PiCamera()
 camera.resolution = (1024, 768)
-camera.start_preview()
 
-#open "offsync" window
-currwindow = '/home/pi/offsync.html'
-system('firefox ' + currwindow + ' -kiosk') 
-
-cyclecount = 0
+cycle_count = 0
 
 while True:
     t0 = time()
     while time() - t0 < 30:
-
-        job()
+        if not synced:
+            preSync()
+        else:
+            postSync()
     
     #refreshes window every 30 seconds
-    refreshwindow()
+    refreshWindow()
 
-    cyclecount += 1
+    cycle_count += 1
