@@ -5,6 +5,7 @@ from os import system
 from time import time
 from time import sleep
 
+negative_answer = b'no match'
 gui_app = 'feh'
 kiosk_switch = '-F -Z'
 server_url = 'https://ilhabela-c33df.web.app/?qr='
@@ -40,10 +41,14 @@ def refreshWindow(new_window):
 #The following are logical functionalities. ------------
 
 def preSync():
-    
+    global negative_answer
+    global no_event_match
+    global event_found
+    global synced
+
     curlToServer(QR[0].data)
             
-    if readResponse() == b'no match':
+    if readResponse() == negative_answer:
         refreshWindow(no_event_match)
 
     else:
@@ -53,17 +58,22 @@ def preSync():
 
 
 def postSync():
+    global negative_answer
+    global synced
+    global cycle_count
+    global no_usr_match
+
     if QR[0].data == sync_QR and cycle_count > 0:
         system('shutdown now')
     else:   
         #send qr data in GET request; let's see if it's a valid user QR...
         curlToServer(QR[0].data) 
 
-        if readResponse == b'no match':
+        if readResponse() == negative_answer:
             refreshWindow(no_usr_match)
 
         else:   #if response isn't "no match", then it must have found a picture.
-            refreshWindow(response)
+            refreshWindow('response')
 
 #main-------------
 
@@ -97,6 +107,6 @@ while True:
                 postSync()
     
     #refreshes window every 30 seconds
-    system('wmctrl -c' + gui_app)
+    system('wmctrl -c ' + gui_app)
 
     cycle_count += 1
