@@ -9,7 +9,7 @@ negative_answer = b'no match'
 gui_app = 'feh'
 kiosk_switch = '-F -Z'
 server_url = 'https://ilhabela-c33df.web.app/?qr='
-path = '/home/pi/proj/'
+path = '/home/pi/QRpass/'
 
 no_usr_match = 'no-usr-match.png'
 no_event_match = 'no-event-match.png'
