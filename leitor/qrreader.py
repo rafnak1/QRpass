@@ -5,8 +5,8 @@ from os import system
 from time import time
 from time import sleep
 
-gui_app = 'firefox'
-kiosk_switch = 'kiosk'
+gui_app = 'feh'
+kiosk_switch = '-F -Z'
 server_url = 'https://ilhabela-c33df.web.app/?q='
 path = '/home/pi/proj/'
 
@@ -15,6 +15,7 @@ no_event_match = 'noeventmatch.html'
 event_found = 'eventlocked.html'
 off_sync = 'offsync.html'
 
+#Returns the server's answer (in bytes) from the "response" file.
 def readResponse():
     global path
     with open(path + 'response', 'rb') as resp:
@@ -32,6 +33,12 @@ def refreshWindow():
     global kisk_switch
     system('wmctrl -c ' + gui_app)
     system(gui_app + ' ' + current_window + ' ' + kiosk_switch)
+
+def preSync():
+    pass #code!
+
+def postSync():
+    pass #code!
 
 def job():
     global cycle_count
