@@ -30,7 +30,6 @@ export class CadastroPage implements OnInit {
    
     ionViewWillEnter() {
       let id = this.activatedRoute.snapshot.paramMap.get('id');
-      id = "1zSyFqGincXKFNBRh4VI";
       if (id) {
         this.ideaService.getGuest(id).subscribe(guest => {
           this.guest = guest;

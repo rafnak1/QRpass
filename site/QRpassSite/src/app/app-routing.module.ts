@@ -21,7 +21,15 @@ const routes: Routes = [
   },
   { path: '', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
   { path: 'idea', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
-  { path: 'idea/:id', loadChildren: './cadastro/cadastro.module#CadastroPageModule' }
+  { path: 'idea/:id', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
+  {
+    path: 'guest-login',
+    loadChildren: () => import('./guest-login/guest-login.module').then( m => m.GuestLoginPageModule)
+  },
+  {
+    path: 'guest-register',
+    loadChildren: () => import('./guest-register/guest-register.module').then( m => m.GuestRegisterPageModule)
+  }
 ];
 
 @NgModule({
