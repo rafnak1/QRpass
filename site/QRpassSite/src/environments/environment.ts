@@ -10,8 +10,7 @@ export const environment = {
     databaseURL: "https://qrpass-9dcb0.firebaseio.com",
     projectId: "qrpass-9dcb0",
     storageBucket: "qrpass-9dcb0.appspot.com",
-    messagingSenderId: "241388745007",
-    measurementId: "G-11ZK0N8TNE"
+    messagingSenderId: "241388745007"
     }
 };
 

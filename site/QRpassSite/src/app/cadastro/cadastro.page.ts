@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GuestServiceService } from './../guest-service.service';
+import { GuestService, Guest } from 'src/app/guest-service.service';
+import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cadastro',
@@ -7,61 +10,65 @@ import { GuestServiceService } from './../guest-service.service';
   styleUrls: ['./cadastro.page.scss'],
 })
 export class CadastroPage implements OnInit {
-
-  icecreams: any;
-  icecreamName: string;
-  icecreamCalories: number;
-  icecreamDescription: string;
-
-  constructor(private icecreamService: GuestServiceService) { }
-
-  ngOnInit(){
-
-      
-      this.icecreamService.read_Icecreams().subscribe(data => {
-      this.icecreams = data.map(e => {
-      return{
-        id: e.payload.doc.id,
-        isEdit: false,
-        Name: e.payload.doc.data()['Name'],
-        Calories: e.payload.doc.data()['Calories'],
-        Description: e.payload.doc.data()['Description'],
-      };
-      })
-      console.log(this.icecreams);
+ 
+    guest: Guest = {
+      name: "",
+      birthDate: null,
+      cpf: "",
+      number: "",
+      email: "",
+      id_sex: null,
+      sex: "",
+      password: "",
+      foto: ""
+    };
+   
+    constructor(private activatedRoute: ActivatedRoute, private ideaService: GuestService,
+      private toastCtrl: ToastController, private router: Router) { }
+   
+    ngOnInit() { }
+   
+    ionViewWillEnter() {
+      let id = this.activatedRoute.snapshot.paramMap.get('id');
+      id = "1zSyFqGincXKFNBRh4VI";
+      if (id) {
+        this.ideaService.getGuest(id).subscribe(guest => {
+          this.guest = guest;
+          alert(guest.email);
+        });
+      }
+    }
+   
+    addGuest() {
+      this.ideaService.addGuest(this.guest).then(() => {
+        this.router.navigateByUrl('/');
+        this.showToast('Convidado adicionado');
+      }, err => {
+        this.showToast('Ocorreu um problema ao cadastrar o convidado :(. Tente novamente mais tarde');
       });
     }
-    CreateRecord(){
-      alert("${Teste}");
-      let record = {};
-      record['Name'] = this.icecreamName;
-      record['Calories'] = this.icecreamCalories;
-      record['Description'] = this.icecreamDescription;
-      this.icecreamService.create_NewIcecream(record).then(resp => {
-        this.icecreamName="";
-        this.icecreamCalories= undefined;
-        this.icecreamDescription = "";
-        console.log(resp);
-      })
-      .catch(error => {
-        console.log(error);
+   
+    deleteGuest() {
+      this.ideaService.deleteGuest(this.guest.id).then(() => {
+        this.router.navigateByUrl('/');
+        this.showToast('Convidado deletado');
+      }, err => {
+        this.showToast('Ocorreu um problema ao deletar o convidado :(. Tente novamente mais tarde');
       });
     }
-    RemoveRecord(rowID) {
-        this.icecreamService.delete_Icecream(rowID);
+   
+    updateGuest() {
+      this.ideaService.updateGuest(this.guest).then(() => {
+        this.showToast('Dados atualizados');
+      }, err => {
+        this.showToast('Ocorreu um problema ao atualizar os dados :(. Tente novamente mais tarde');
+      });
     }
-    EditRecord(record){
-      record.isEdit = true;
-      record.EditName = record.Name;
-      record.EditCalories = record.Calories;
-      record.EditDescription = record.Description;
-    }
-    UpdateRecord(recordRow){
-      let record = {};
-      record['Name']=recordRow.EditName;
-      record['Calories']= recordRow.EditCalories;
-      record['Description']= recordRow.EditDescription;
-      this.icecreamService.update_Icecream(recordRow.id, record);
-      recordRow.isEdit = false;
+   
+    showToast(msg) {
+      this.toastCtrl.create({
+        message: msg,
+        duration: 2000
+      }).then(toast => toast.present());
     }
   }
