@@ -1,29 +1,75 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-
+import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
+import { map, take } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+ 
+export interface Guest {
+  id?: string,
+  name: string,
+  birthDate: Date,
+  cpf: string,
+  number: string,
+  email: string,
+  id_sex: Int16Array,
+  sex: string,
+  password: string,
+  foto: string
+}
+ 
 @Injectable({
   providedIn: 'root'
 })
-export class GuestServiceService {
+export class GuestService {
+  private guests: Observable<Guest[]>;
+  private guestCollection: AngularFirestoreCollection<Guest>;
+ 
+  constructor(private afs: AngularFirestore) {
+    this.guestCollection = this.afs.collection<Guest>('guests');
+    this.guests = this.guestCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  }
+ 
+  getGuests(): Observable<Guest[]> {
+    return this.guests;
+  }
 
-  constructor(
-    private firestore: AngularFirestore
-  ) { }
-
-/* create_NewIcecream : Cria um novo registro na coleção especificada usando o método add */
-create_NewIcecream(record){
-  return this.firestore.collection('Icecreams').add(record);
-}
-/*read_Icecream: Chama o método snapshotChanges , que obterá registros e também será registrado para receber atualizações */
-read_Icecreams(){
-  return this.firestore.collection('Icecreams').snapshotChanges();
-}
-/*update_Icecream : atualiza o registro pegando o ID e chamando o método de atualização */
-update_Icecream(recordID,record) {
-  this.firestore.doc('Icecreams/' + recordID).update(record);
-}
-/*delete_Icecream : chama o método de exclusão  ao registrar o ID*/
-delete_Icecream(record_id) {
-  this.firestore.doc('Icecreams/' + record_id).delete();
+  guestLogin(guest: Guest): Observable<Guest> {
+    return this.guestCollection.doc<Guest>(guest.email).valueChanges().pipe(
+      take(1),
+      map(guest => {
+        guest.email = guest.email;
+        return guest
+      })
+    );
+  }
+ 
+  getGuest(id: string): Observable<Guest> {
+    return this.guestCollection.doc<Guest>(id).valueChanges().pipe(
+      take(1),
+      map(guest => {
+        guest.id = id;
+        return guest
+      })
+    );
+  }
+ 
+  addGuest(guest: Guest): Promise<DocumentReference> {
+    return this.guestCollection.add(guest);
+  }
+ 
+  updateGuest(guest: Guest): Promise<void> {
+    return this.guestCollection.doc(guest.id).update({ name: guest.name, birthDate: guest.birthDate, cpf: guest.cpf, number: guest.number,
+      email: guest.email, id_sex: guest.id_sex, password: guest.password, foto: guest.foto });
+  }
+ 
+  deleteGuest(id: string): Promise<void> {
+    return this.guestCollection.doc(id).delete();
   }
 }
