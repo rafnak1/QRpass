@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
  
 export interface Guest {
   id?: string,
@@ -23,7 +24,7 @@ export class GuestService {
   private guests: Observable<Guest[]>;
   private guestCollection: AngularFirestoreCollection<Guest>;
  
-  constructor(private afs: AngularFirestore) {
+  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
     this.guestCollection = this.afs.collection<Guest>('guests');
     this.guests = this.guestCollection.snapshotChanges().pipe(
       map(actions => {
@@ -38,6 +39,54 @@ export class GuestService {
  
   getGuests(): Observable<Guest[]> {
     return this.guests;
+  }
+
+  registerGuest(value) {
+    return new Promise<any>((resolve, reject) => {
+ 
+      this.afAuth.createUserWithEmailAndPassword(value.email, value.password)
+        .then(
+          res => resolve(res),
+          err => reject(err))
+    })
+ 
+  }
+
+  signup(value) {
+    return new Promise<any>((resolve, reject) => {
+ 
+      this.afAuth.createUserWithEmailAndPassword(value.email, value.password)
+        .then(
+          res => resolve(res),
+          err => reject(err))
+    })
+  }
+
+  loginGuest(value) {
+    return new Promise<any>((resolve, reject) => {
+      this.afAuth.signInWithEmailAndPassword(value.email, value.password)
+        .then(
+          res => resolve(res),
+          err => reject(err))
+    })
+  }
+ 
+  logoutGuest() {
+    return new Promise((resolve, reject) => {
+      if (this.afAuth.currentUser) {
+        this.afAuth.signOut()
+          .then(() => {
+            console.log("LOG Out");
+            resolve();
+          }).catch((error) => {
+            reject();
+          });
+      }
+    })
+  }
+ 
+  guestDetails() {
+    return this.afAuth.user
   }
 
   guestLogin(guest: Guest): Observable<Guest> {

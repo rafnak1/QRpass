@@ -23,7 +23,7 @@ export class CadastroPage implements OnInit {
       foto: ""
     };
    
-    constructor(private activatedRoute: ActivatedRoute, private ideaService: GuestService,
+    constructor(private activatedRoute: ActivatedRoute, private guestService: GuestService,
       private toastCtrl: ToastController, private router: Router) { }
    
     ngOnInit() { }
@@ -31,15 +31,21 @@ export class CadastroPage implements OnInit {
     ionViewWillEnter() {
       let id = this.activatedRoute.snapshot.paramMap.get('id');
       if (id) {
-        this.ideaService.getGuest(id).subscribe(guest => {
+        this.guestService.getGuest(id).subscribe(guest => {
           this.guest = guest;
-          alert(guest.email);
         });
       }
     }
+
+    getGuestById() {
+      let id;
+       this.guestService.getGuest(id).subscribe(guest => {
+          this.guest = guest;
+        });
+    }
    
     addGuest() {
-      this.ideaService.addGuest(this.guest).then(() => {
+      this.guestService.addGuest(this.guest).then(() => {
         this.router.navigateByUrl('/');
         this.showToast('Convidado adicionado');
       }, err => {
@@ -48,7 +54,7 @@ export class CadastroPage implements OnInit {
     }
    
     deleteGuest() {
-      this.ideaService.deleteGuest(this.guest.id).then(() => {
+      this.guestService.deleteGuest(this.guest.id).then(() => {
         this.router.navigateByUrl('/');
         this.showToast('Convidado deletado');
       }, err => {
@@ -57,7 +63,7 @@ export class CadastroPage implements OnInit {
     }
    
     updateGuest() {
-      this.ideaService.updateGuest(this.guest).then(() => {
+      this.guestService.updateGuest(this.guest).then(() => {
         this.showToast('Dados atualizados');
       }, err => {
         this.showToast('Ocorreu um problema ao atualizar os dados :(. Tente novamente mais tarde');

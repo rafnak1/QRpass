@@ -12,24 +12,18 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'pagina-teste',
-    loadChildren: () => import('./pagina-teste/pagina-teste.module').then( m => m.PaginaTestePageModule)
-  },
-  {
     path: 'cadastro',
     loadChildren: () => import('./cadastro/cadastro.module').then( m => m.CadastroPageModule)
   },
   { path: '', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
   { path: 'idea', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
   { path: 'idea/:id', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
+  { path: 'login', loadChildren: './guest-login/guest-login.module#GuestLoginPageModule' },
+  { path: 'signup', loadChildren: './guest-register/guest-register.module#GuestRegisterPageModule' },
   {
-    path: 'guest-login',
-    loadChildren: () => import('./guest-login/guest-login.module').then( m => m.GuestLoginPageModule)
+    path: 'main-menu',
+    loadChildren: () => import('./main-menu/main-menu.module').then( m => m.MainMenuPageModule)
   },
-  {
-    path: 'guest-register',
-    loadChildren: () => import('./guest-register/guest-register.module').then( m => m.GuestRegisterPageModule)
-  }
 ];
 
 @NgModule({
