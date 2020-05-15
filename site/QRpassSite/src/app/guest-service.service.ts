@@ -3,11 +3,19 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { GuestRegisterPage } from './guest-register/guest-register.page';
  
-declare global {
-  var IDlogado: string;
-  var LoggedGuest: Guest;
-}
+var LoggedGuest : Guest= {
+  name: "",
+  birthDate: null,
+  cpf: "",
+  number: "",
+  email: "",
+  gender: "",
+  password: "",
+  foto: ""
+};
+
 
 export interface Guest {
   id?: string,
@@ -48,23 +56,30 @@ export class GuestService {
   }
 
   registerGuest(value) {
-    return new Promise<any>((resolve, reject) => {
- 
+    var resp = new Promise<any>((resolve, reject) => {
       this.afAuth.createUserWithEmailAndPassword(value.email, value.password)
         .then(
           res => resolve(res),
           err => reject(err))
-    })
- 
+    });
+    alert(value.email);
+    LoggedGuest.email = value.email;
+    LoggedGuest.password = value.password;
+    return (resp);
   }
 
   getGuestID(){
-    var userId;
-    this.afAuth.idToken.subscribe( user => {
-      userId = user.uid;
-      alert("certo: "+userId);
-      IDlogado = userId;
+    alert(LoggedGuest.email+" se cadastrou!");
+    var resp = new Promise<any>((resolve, reject) => {
+      this.afAuth.signInWithEmailAndPassword(LoggedGuest.email, LoggedGuest.password)
+        .then(
+          res => resolve(res),
+          err => reject(err))
     })
+    this.afAuth.authState.subscribe( user => {
+      if (user) { LoggedGuest.id = user.uid }
+    });    
+    return 0;
   }
 
   signup(value) {

@@ -3,7 +3,7 @@
     <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
- 
+
 <ion-content class="ion-padding">
   <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
 
@@ -19,7 +19,7 @@
         </div>
       </ng-container>
     </div>
- 
+
     <ion-item>
       <ion-label position="floating" color="primary">Password</ion-label>
       <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
@@ -32,8 +32,8 @@
         </div>
       </ng-container>
     </div>
- 
- 
+
+
     <ion-button class="submit-btn" type="submit" [disabled]="!validations_form.valid">Register</ion-button>
     <label class="error-message">{{errorMessage}}</label>
     <label class="success-message">{{successMessage}}</label>

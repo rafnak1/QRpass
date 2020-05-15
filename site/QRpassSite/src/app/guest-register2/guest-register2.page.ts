@@ -61,6 +61,7 @@ export class GuestRegister2Page implements OnInit {
         Validators.required
       ])),
     });
+    alert("passei");
     this.authService.getGuestID();
   }
   

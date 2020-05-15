@@ -10,7 +10,6 @@ import { stringify } from 'querystring';
 @Component({
   selector: 'app-guest-register',
   templateUrl: './guest-register.page.html',
-  
   styleUrls: ['./guest-register.page.scss'],
 })
 export class GuestRegisterPage implements OnInit {
@@ -53,7 +52,16 @@ export class GuestRegisterPage implements OnInit {
   ) { }
  
   ngOnInit() {
-    
+    this.validations_form = this.formBuilder.group({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required
+      ])),
+    });
     /*this.authService.getGuestID();*/
   }
  
@@ -63,36 +71,27 @@ export class GuestRegisterPage implements OnInit {
       .then(res => {
         console.log(res);
         this.errorMessage = "";
-        this.successMessage = res.message;
+        this.successMessage = "Your account has been created. Please log in.";
+        this.navCtrl.navigateBack('/signup2');
       }, err => {
         console.log(err);
         this.errorMessage = err.message;
         this.successMessage = "";
-      });
+      })
       /* fazendo o login do usuario que acabou de cadastrar*/
-      this.authService.loginGuest(value)
+      /*this.authService.loginGuest(value)
       .then(res => {
         console.log(res);
         this.errorMessage = "";
         this.navCtrl.navigateForward('/dashboard');
       }, err => {
         this.errorMessage = err.message;
-      });
-      alert("Passei");
-      this.goSecondPage();
+      });*/
+      /*this.goSecondPage();*/
   }
- 
-  addGuest() {
-    this.guestService.addGuest(this.guest).then(() => {
-      this.router.navigateByUrl('/');
-      this.showToast('Convidado adicionado com sucesso!');
-    }, err => {
-      this.showToast('Ocorreu um problema ao cadastrar o convidado :(. Tente novamente mais tarde');
-    });
-  }
-
+  
   goLoginPage() {
-    this.navCtrl.navigateBack('');
+    this.navCtrl.navigateBack('/login');
   }
 
   goSecondPage() {
