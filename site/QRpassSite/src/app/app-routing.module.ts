@@ -20,9 +20,19 @@ const routes: Routes = [
   { path: 'idea/:id', loadChildren: './cadastro/cadastro.module#CadastroPageModule' },
   { path: 'login', loadChildren: './guest-login/guest-login.module#GuestLoginPageModule' },
   { path: 'signup', loadChildren: './guest-register/guest-register.module#GuestRegisterPageModule' },
+  { path: 'signup2', loadChildren: './guest-register2/guest-register2.module#GuestRegister2PageModule' },
+  { path: 'main', loadChildren: './main/main.module#MainPageModule' },
   {
     path: 'main-menu',
     loadChildren: () => import('./main-menu/main-menu.module').then( m => m.MainMenuPageModule)
+  },
+  {
+    path: 'guest-register2',
+    loadChildren: () => import('./guest-register2/guest-register2.module').then( m => m.GuestRegister2PageModule)
+  },
+  {
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   },
 ];
 

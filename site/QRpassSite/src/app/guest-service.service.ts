@@ -4,6 +4,11 @@ import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
  
+declare global {
+  var IDlogado: string;
+  var LoggedGuest: Guest;
+}
+
 export interface Guest {
   id?: string,
   name: string,
@@ -11,12 +16,13 @@ export interface Guest {
   cpf: string,
   number: string,
   email: string,
-  id_sex: Int16Array,
-  sex: string,
+  gender: string,
   password: string,
   foto: string
 }
- 
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -50,6 +56,15 @@ export class GuestService {
           err => reject(err))
     })
  
+  }
+
+  getGuestID(){
+    var userId;
+    this.afAuth.idToken.subscribe( user => {
+      userId = user.uid;
+      alert("certo: "+userId);
+      IDlogado = userId;
+    })
   }
 
   signup(value) {
@@ -110,12 +125,12 @@ export class GuestService {
   }
  
   addGuest(guest: Guest): Promise<DocumentReference> {
-    return this.guestCollection.add(guest);
+    return this.afs.collection<Guest>('guests/'+guest.id).add(guest);
   }
  
   updateGuest(guest: Guest): Promise<void> {
     return this.guestCollection.doc(guest.id).update({ name: guest.name, birthDate: guest.birthDate, cpf: guest.cpf, number: guest.number,
-      email: guest.email, id_sex: guest.id_sex, password: guest.password, foto: guest.foto });
+      email: guest.email, gender: guest.gender, password: guest.password, foto: guest.foto });
   }
  
   deleteGuest(id: string): Promise<void> {

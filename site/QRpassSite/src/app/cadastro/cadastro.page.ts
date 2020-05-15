@@ -17,8 +17,7 @@ export class CadastroPage implements OnInit {
       cpf: "",
       number: "",
       email: "",
-      id_sex: null,
-      sex: "",
+      gender: "",
       password: "",
       foto: ""
     };

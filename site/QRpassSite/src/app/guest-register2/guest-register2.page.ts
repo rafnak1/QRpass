@@ -8,14 +8,12 @@ import { ToastController } from '@ionic/angular';
 import { stringify } from 'querystring';
 
 @Component({
-  selector: 'app-guest-register',
-  templateUrl: './guest-register.page.html',
-  
-  styleUrls: ['./guest-register.page.scss'],
+  selector: 'app-guest-register2',
+  templateUrl: './guest-register2.page.html',
+  styleUrls: ['./guest-register2.page.scss'],
 })
-export class GuestRegisterPage implements OnInit {
- 
- 
+export class GuestRegister2Page implements OnInit {
+
   guest: Guest = {
     name: "",
     birthDate: null,
@@ -30,7 +28,7 @@ export class GuestRegisterPage implements OnInit {
   validations_form: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
- 
+  
   validation_messages = {
     'email': [
       { type: 'required', message: 'Email é obrigatório.' },
@@ -41,7 +39,7 @@ export class GuestRegisterPage implements OnInit {
       { type: 'minlength', message: 'A senha deve ter no mínimo 5 caracteres.' }
     ]
   };
- 
+  
   constructor(
     private navCtrl: NavController,
     private authService: GuestService,
@@ -51,37 +49,28 @@ export class GuestRegisterPage implements OnInit {
     private toastCtrl: ToastController, 
     private router: Router
   ) { }
- 
+  
   ngOnInit() {
-    
-    /*this.authService.getGuestID();*/
+    this.validations_form = this.formBuilder.group({
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required
+      ])),
+    });
+    this.authService.getGuestID();
   }
- 
+  
   tryRegister(value) {
-    alert("Iniciei");
-    this.authService.registerGuest(value)
-      .then(res => {
-        console.log(res);
-        this.errorMessage = "";
-        this.successMessage = res.message;
-      }, err => {
-        console.log(err);
-        this.errorMessage = err.message;
-        this.successMessage = "";
-      });
-      /* fazendo o login do usuario que acabou de cadastrar*/
-      this.authService.loginGuest(value)
-      .then(res => {
-        console.log(res);
-        this.errorMessage = "";
-        this.navCtrl.navigateForward('/dashboard');
-      }, err => {
-        this.errorMessage = err.message;
-      });
-      alert("Passei");
-      this.goSecondPage();
+
+          this.guest.name = value.name;
+          this.guest.email = value.email;
+          this.addGuest();
   }
- 
+  
   addGuest() {
     this.guestService.addGuest(this.guest).then(() => {
       this.router.navigateByUrl('/');
@@ -94,12 +83,7 @@ export class GuestRegisterPage implements OnInit {
   goLoginPage() {
     this.navCtrl.navigateBack('');
   }
-
-  goSecondPage() {
-    alert("Fui chamado!");
-    this.navCtrl.navigateBack('/signup2');
-  }
- 
+  
   showToast(msg) {
     this.toastCtrl.create({
       message: msg,

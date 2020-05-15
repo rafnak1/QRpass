@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating" color="primary">Name</ion-label>
+    <ion-input [(ngModel)]="guest.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" color="primary">Data de nascimento</ion-label>
+    <ion-input [(ngModel)]="guest.birthDate"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" color="primary">CPF</ion-label>
+    <ion-input [(ngModel)]="guest.cpf"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" color="primary">Telefone</ion-label>
+    <ion-input [(ngModel)]="guest.number"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" color="primary">Genero</ion-label>
+    <ion-input [(ngModel)]="guest.gender"></ion-input>
+  </ion-item>
+
+  <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
+ 
+    <ion-button class="submit-btn" type="submit" [disabled]="!validations_form.valid">Cadastrar</ion-button>
+    <label class="error-message">{{errorMessage}}</label>
+    <label class="success-message">{{successMessage}}</label>
+  </form>
+</ion-content>

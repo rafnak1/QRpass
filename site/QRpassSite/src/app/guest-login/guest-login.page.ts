@@ -56,7 +56,12 @@ export class GuestLoginPage implements OnInit {
         this.navCtrl.navigateForward('/dashboard');
       }, err => {
         this.errorMessage = err.message;
-      })
+      });
+      this.navCtrl.navigateForward('/main');
+  }
+
+  getUserId(){
+    return(this.authService.getGuestID());
   }
   
   goToRegisterPage() {
