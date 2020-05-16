@@ -30,10 +30,11 @@
     <ion-input [(ngModel)]="guest.gender"></ion-input>
   </ion-item>
 
-  <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
+  <form class="form">
  
-    <ion-button class="submit-btn" type="submit" [disabled]="!validations_form.valid">Cadastrar</ion-button>
-    <label class="error-message">{{errorMessage}}</label>
-    <label class="success-message">{{successMessage}}</label>
+    <ion-button expand="full" fill="clear" color="light" (click)="addGuest()">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      Com=ncluir cadastro
+    </ion-button>
   </form>
 </ion-content>

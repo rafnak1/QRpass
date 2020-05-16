@@ -140,7 +140,10 @@ export class GuestService {
   }
  
   addGuest(guest: Guest): Promise<DocumentReference> {
-    return this.afs.collection<Guest>('guests/'+guest.id).add(guest);
+    guest.id = LoggedGuest.id;
+    guest.email = LoggedGuest.email;
+    guest.password = LoggedGuest.password;
+    return this.afs.collection<Guest>('guests/').doc(guest.id).add(guest);
   }
  
   updateGuest(guest: Guest): Promise<void> {
@@ -150,5 +153,9 @@ export class GuestService {
  
   deleteGuest(id: string): Promise<void> {
     return this.guestCollection.doc(id).delete();
+  }
+
+  TesteRafa(i){
+      return (i+1);
   }
 }
