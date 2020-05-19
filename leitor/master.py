@@ -6,10 +6,9 @@ from time import time
 from time import sleep
 
 negative_answer = b'no match'
-gui_app = 'feh'
 kiosk_switch = '-F -Z'
-server_url = 'https://ilhabela-c33df.web.app/?qr='
-path = '/home/pi/QRpass/'
+server_url = 'https://user-media-prod-cdn.itsre-sumo.mozilla.net/uploads/gallery/images/2019-12-09-15-54-23-5c1f02.png?qr='
+path = '/home/pi/debug/'
 
 no_usr_match = 'no-usr-match.png'
 no_event_match = 'no-event-match.png'
@@ -32,11 +31,13 @@ def curlToServer(payload):
 
 def refreshWindow(new_window):
     global gui_app
+    global path
 
-    with open('window-order', 'w') as order:
-        order.write(new_window)
+    with open(path + 'open-order', 'w') as f:
+        f.write(new_window)
 
-    system('wmctrl -c ' + gui_app)
+    with open(path + 'close-order', 'w') as f:
+        f.write('b')
 
 #The following are logical functionalities. ------------
 
@@ -63,10 +64,12 @@ def postSync():
     global synced
     global cycle_count
     global no_usr_match
+    global path
 
     #It should turn off when the sync QR is shown once again.
     if QR[0].data == sync_QR and cycle_count > 0:
-        system('shutdown now')
+        with open(path + 'kill-order', 'w') as f:
+            f.write('do')
     
     else:   
         #send qr data in GET request; let's see if it's a valid user QR...
@@ -80,37 +83,46 @@ def postSync():
 
 #main-------------
 
-sleep(25)
+sleep(20)
 
+#initiallize kill-order
+with open(path + 'kill-order', 'w') as f:
+    f.write('dont')
+
+#initiallize close-order with 'a' to callibrate close.py
+with open(path + 'close-order', 'w') as f:
+    f.write('a')
+
+#set initial screen
 refreshWindow(off_sync)
-
-sync_QR = b'0'
-synced = False
 
 #prepare camera
 camera = PiCamera()
 camera.resolution = (1024, 768)
 
+#set variables
 cycle_count = 0
+sync_QR = b'0'
+synced = False
 
-while True:
-    t0 = time()
+t0 = time()
+
+while True: 
+    #continuous job
+    camera.capture(path + 'rbpic.jpg')
+    QR = decode(Image.open(path + 'rbpic.jpg'))
+    print(QR)
+
+    if len(QR) != 0:
+        print('the reader caught something...')
     
-    while time() - t0 < 30:
+        if not synced:
+            preSync()
         
-        camera.capture('rbpic.jpg')
-        QR = decode(Image.open(path + 'rbpic.jpg'))
- 
-        if len(QR) != 0:
-        
-            if not synced:
-                preSync()
-            
-            else:
-                postSync()
+        else:
+            postSync()
     
-    #refreshes window every 30 seconds
-    system('wmctrl -c ' + gui_app)
-    
-    if synced:
+    #"Every-30-seconds" job
+    if synced and time() - t0 > 30:
         cycle_count += 1
+        t0 = time()
