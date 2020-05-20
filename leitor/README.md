@@ -1,3 +1,8 @@
+Program requirements:
+- pyzbar;
+- feh image viewer;
+- wmctrl for closing feh.
+
 Crontab settings:
 
 [on sudo crontab] @reboot /usr/bin/python3 /home/pi/debug/kill.py
