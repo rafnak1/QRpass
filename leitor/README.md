@@ -1,4 +1,4 @@
-The stable release for the qr reader (runs on a Raspberry pi 2)
+The first stable release for the qr reader (runs on a Raspberry pi 2)
 
 Program requirements:
 - pyzbar;
