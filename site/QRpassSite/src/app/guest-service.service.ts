@@ -62,14 +62,12 @@ export class GuestService {
           res => resolve(res),
           err => reject(err))
     });
-    alert(value.email);
     LoggedGuest.email = value.email;
     LoggedGuest.password = value.password;
     return (resp);
   }
 
   getGuestID(){
-    alert(LoggedGuest.email+" se cadastrou!");
     var resp = new Promise<any>((resolve, reject) => {
       this.afAuth.signInWithEmailAndPassword(LoggedGuest.email, LoggedGuest.password)
         .then(
@@ -143,7 +141,19 @@ export class GuestService {
     guest.id = LoggedGuest.id;
     guest.email = LoggedGuest.email;
     guest.password = LoggedGuest.password;
-    return this.afs.collection<Guest>('guests/').doc(guest.id).add(guest);
+    /*return this.afs.collection<Guest>('guests/').add(guest);*/
+    
+    return new Promise((resolve, reject) => {
+      this.afs.collection<Guest>('guests/').doc(guest.id).set(guest)
+          .then(() => {
+            console.log("Cadastrado com sucesso");
+            resolve();
+          }).catch((error) => {
+            console.log(error);
+            reject();
+          });
+    })
+    
   }
  
   updateGuest(guest: Guest): Promise<void> {

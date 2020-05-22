@@ -12,21 +12,32 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
+import { AngularFirestoreModule, SETTINGS, AngularFirestore } from '@angular/fire/firestore';
+
+import { HttpClientModule } from '@angular/common/http';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AppRoutingModule,
-    AngularFireAuthModule],
+    AngularFireAuthModule,
+    HttpClientModule],
   providers: [
+    AngularFirestore,
+    AngularFireStorage,
+    AngularFirestoreModule,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: SETTINGS, useValue: {} }
+    { provide: SETTINGS, useValue: {} },
   ],
   bootstrap: [AppComponent]
 })

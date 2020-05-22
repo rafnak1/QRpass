@@ -66,7 +66,6 @@ export class GuestRegisterPage implements OnInit {
   }
  
   tryRegister(value) {
-    alert("Iniciei");
     this.authService.registerGuest(value)
       .then(res => {
         console.log(res);

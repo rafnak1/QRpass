@@ -3,7 +3,7 @@
     <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
- 
+
 <ion-content class="ion-padding">
   <ion-item>
     <ion-label position="floating" color="primary">Name</ion-label>
@@ -12,7 +12,7 @@
 
   <ion-item>
     <ion-label position="floating" color="primary">Data de nascimento</ion-label>
-    <ion-input [(ngModel)]="guest.birthDate"></ion-input>
+    <ion-input type="date" [(ngModel)]="guest.birthDate"></ion-input>
   </ion-item>
 
   <ion-item>
@@ -26,15 +26,40 @@
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating" color="primary">Genero</ion-label>
-    <ion-input [(ngModel)]="guest.gender"></ion-input>
+    <ion-label position="floating" color="primary">Gênero</ion-label>
+    <ion-select [(ngModel)]="guest.gender" value="Feminino" ok-text="Selecionar" cancel-text="Cancelar">
+      <ion-select-option value="Feminino">Feminino</ion-select-option>
+      <ion-select-option value="Masculino">Masculino</ion-select-option>
+      <ion-select-option value="Diverso">Diverso</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+      <ion-img [src]="url" alt=""></ion-img>
+  </ion-item>
+  <ion-item>
+        <ion-input [id]="Foto" (change)="uploadImage($event)" type="file" class="image-upload" accept="image/*" [(ngModel)]="guest.foto"></ion-input>
   </ion-item>
 
   <form class="form">
- 
-    <ion-button expand="full" fill="clear" color="light" (click)="addGuest()">
+    <ion-button class="submit-btn" type="submit" expand="full" fill="clear" color="blue" (click)="addGuest()">
       <ion-icon name="checkmark" slot="start"></ion-icon>
-      Com=ncluir cadastro
+      Concluir cadastro
     </ion-button>
   </form>
 </ion-content>
+
+<!---------------------------------------->
+<!--
+<ion-content padding>
+  <div class="box">
+    <div class="preview">
+      <img [src]="url" alt="">
+    </div>
+    <div class="uploadbtn">
+      <label>
+        <input class="submit-btn" type="submit" (change)="uploadImage($event)" type="file" class="image-upload" accept="image/*">
+      </label>
+    </div>
+  </div>
+</ion-content>-->
