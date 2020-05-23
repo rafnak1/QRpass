@@ -53,6 +53,7 @@ export class GuestLoginPage implements OnInit {
       .then(res => {
         console.log(res);
         this.errorMessage = "";
+        this.authService.getGuestID();
         this.navCtrl.navigateForward('/main');
       }, err => {
         this.errorMessage = err.message;

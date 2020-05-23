@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>GuestProfile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let building of buildingList">
+    <ion-label  color="primary" >Nome: {{ guest.name }}</ion-label>
+  </ion-item>
+
+  <ion-item *ngFor="let building of buildingList">
+    <ion-label  color="primary" >Data de nascimento: {{ guest.birthDate }}</ion-label>
+  </ion-item>
+
+  <ion-item *ngFor="let building of buildingList">
+    <ion-label  color="primary" >Email: {{ guest.email }}</ion-label>
+  </ion-item>
+
+  <ion-item *ngFor="let building of buildingList">
+    <ion-label  color="primary" >CPF: {{ guest.cpf }}</ion-label>
+  </ion-item>
+
+  <ion-item>
+      <ion-img [src]="fotoUrl" alt=""></ion-img>
+  </ion-item>
+
+  <form class="form">
+    <ion-button class="submit-btn" type="submit" expand="full" fill="clear" color="blue" (click)="GoUpdateGuestPage()">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      Alterar informações
+    </ion-button>
+  </form>
+  <form class="form">
+    <ion-button class="submit-btn" type="submit" expand="full" fill="clear" color="red" (click)="GoDeleteGuestPage()">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      Alterar informações
+    </ion-button>
+  </form>
+</ion-content>

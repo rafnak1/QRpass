@@ -4,6 +4,7 @@ import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { GuestRegisterPage } from './guest-register/guest-register.page';
+import { FirebaseApp } from '@angular/fire';
  
 var LoggedGuest : Guest= {
   name: "",
@@ -29,8 +30,6 @@ export interface Guest {
   foto: string
 }
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -38,7 +37,11 @@ export class GuestService {
   private guests: Observable<Guest[]>;
   private guestCollection: AngularFirestoreCollection<Guest>;
  
-  constructor(private afs: AngularFirestore, private afAuth: AngularFireAuth) {
+  constructor(
+    private afs: AngularFirestore,
+     private afAuth: AngularFireAuth,
+     private Firebase: FirebaseApp
+     ) {
     this.guestCollection = this.afs.collection<Guest>('guests');
     this.guests = this.guestCollection.snapshotChanges().pipe(
       map(actions => {
@@ -50,10 +53,11 @@ export class GuestService {
       })
     );
   }
- 
+  
   getGuests(): Observable<Guest[]> {
-    return this.guests;
+    return this.afs.collection('Employees').snapshotChanges();
   }
+  
 
   registerGuest(value) {
     var resp = new Promise<any>((resolve, reject) => {
@@ -81,13 +85,17 @@ export class GuestService {
   }
 
   signup(value) {
-    return new Promise<any>((resolve, reject) => {
+    var resp = new Promise<any>((resolve, reject) => {
  
       this.afAuth.createUserWithEmailAndPassword(value.email, value.password)
         .then(
           res => resolve(res),
           err => reject(err))
-    })
+    });
+    LoggedGuest.email = value.email;
+    LoggedGuest.password = value.password;
+
+    return resp;
   }
 
   loginGuest(value) {
@@ -127,14 +135,38 @@ export class GuestService {
     );
   }
  
-  getGuest(id: string): Observable<Guest> {
+  getGuest(id: string): Observable<Guest[]>{
+    if(id == "-1"){
+      id = LoggedGuest.id;
+    }
+    alert("Passei primeiro? id = "+id);
     return this.guestCollection.doc<Guest>(id).valueChanges().pipe(
       take(1),
-      map(guest => {
-        guest.id = id;
-        return guest
+      map(idea => {
+        idea.id = id;
+        return idea;
       })
     );
+  }
+
+  getContact(id: string): any {
+    if(id == "-1"){
+      id = LoggedGuest.id;
+    }
+    alert("Passei aqui");
+    var resp = new Promise((resolve, reject) => {
+      resp = this.Firebase.firestore().collection('guests').doc(id).get()
+        .then(() => {
+          console.log("Cadastrado com sucesso: "+resp.cpf);
+          return resp;
+          resolve();
+        }).catch((error) => {
+          console.log("De erro: "+error);
+          reject();
+        });
+      });
+    alert(resp.cpf);
+    return resp;
   }
  
   addGuest(guest: Guest): Promise<DocumentReference> {
@@ -157,7 +189,7 @@ export class GuestService {
   }
  
   updateGuest(guest: Guest): Promise<void> {
-    return this.guestCollection.doc(guest.id).update({ name: guest.name, birthDate: guest.birthDate, cpf: guest.cpf, number: guest.number,
+    return this.guestCollection.doc(LoggedGuest.id).update({ name: guest.name, birthDate: guest.birthDate, cpf: guest.cpf, number: guest.number,
       email: guest.email, gender: guest.gender, password: guest.password, foto: guest.foto });
   }
  

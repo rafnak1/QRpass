@@ -82,7 +82,7 @@ export class GuestRegister2Page implements OnInit {
   
   addGuest() {
     alert("oi");
-    this.guest.foto =  '%2' + 'ProfilePic' + this.guest.cpf;
+    this.guest.foto =  '%2F' + 'ProfilePic' + this.guest.cpf;
     // For Uploading Image To Firebase
     var reader = new FileReader();
     reader.readAsDataURL(imgFile);
@@ -98,7 +98,7 @@ export class GuestRegister2Page implements OnInit {
     this.guestService.addGuest(this.guest).then(() => {
       
       
-      this.router.navigateByUrl('/');
+      this.router.navigateByUrl('/main');
       this.showToast('Convidado adicionado com sucesso!');
     }, err => {
       console.log(err);
