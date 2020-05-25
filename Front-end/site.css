@@ -1,0 +1,18 @@
+*
+{
+  color: #000000;
+}
+}
+
+ul{
+  text-decoration:underline;
+  list-style:circle;
+}
+label {
+	display: block;
+	float: left;
+}
+label, input {
+	width:68px;
+	margin: 3px 0;
+}
