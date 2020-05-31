@@ -3,13 +3,22 @@
 </head>
 <h1 style:'color= white'>Site QRpass BETA</h1>
 
-<label for="inputnome"> Nome: </label>
-<input id="inputnome" type="text">
+
+<p>Entre no site para saber sobre seus eventos!  <br>
+  Com QRpass, voce pode: <br>
+</p>
+
+
+<li>Acessar seus futuros eventos; </li> <br>
+<li>Acessar eventos passados pelo historico de eventos; </li> <br>
+<li>Ver quais eventos utilizam QRpass. </li> <br>
+
+<p>Cadastre-se: </p>
 
 <br>
 
-<label for="inputidade"> Idade: </label>
-<input id="inputidade" type="text">
+<label for="inputnome"> Nome: </label> 
+<input id="inputnome" type="text">
 
 <br>
 
@@ -18,11 +27,47 @@
 
 <br>
 
+<label for="inputidade"> Idade: </label>
+<input id="inputidade" type="text">
 
-<button id="botaocalcular" onclick="calcular()">
+<br>
+
+<label for="inputcidade"> Cidade: </label>
+<input id="inputcidade" type="text">
+
+<br>
+
+<label for="inputusername"> Username: </label>
+<input id="username" type="text">
+
+<br>
+
+<label for="inputsenha"> Senha: </label>
+<input id="inputsenha" type="text">
+
+<br>
+
+<label for="inputsenhaconfirm"> Confirme a senha: </label>
+<input id="inputsenhaconfirm" type="text">
+
+<br>
+<br>
+
+
+Sexo:
+<br>
+<input type="radio" name="sexo" value="Masculino" checked> Homem
+<br>
+<input type="radio" name="sexo" value="Feminino"> Mulher
+<br>
+<input type="radio" name="sexo" value="Outro"> Outro
+<br>
+
+
+<button id="submit" onclick="submit">
   Enviar 
 </button>
 
-<script src="site.js"></script>
-  
-<p id="dias"> </p>
+<p> Caso deseje refazer o formulario:  </p>
+
+<input type="reset">
