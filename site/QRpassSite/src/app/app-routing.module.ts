@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'signup2', loadChildren: './guest-register2/guest-register2.module#GuestRegister2PageModule' },
   { path: 'main', loadChildren: './main/main.module#MainPageModule' },
   { path: 'GuestProfile', loadChildren: './guest-profile/guest-profile.module#GuestProfilePageModule' },
+  { path: 'guestUpdate', loadChildren: './guest-update-profile/guest-update-profile.module#GuestUpdateProfilePageModule' },
   {
     path: 'main-menu',
     loadChildren: () => import('./main-menu/main-menu.module').then( m => m.MainMenuPageModule)
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'guest-profile',
     loadChildren: () => import('./guest-profile/guest-profile.module').then( m => m.GuestProfilePageModule)
+  },
+  {
+    path: 'guest-update-profile',
+    loadChildren: () => import('./guest-update-profile/guest-update-profile.module').then( m => m.GuestUpdateProfilePageModule)
   },
 ];
 

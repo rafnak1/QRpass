@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Register</ion-title>
+    <ion-title>Update Profile</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -41,25 +41,11 @@
         <ion-input [id]="Foto" (change)="uploadImage($event)" type="file" class="image-upload" accept="image/*" [(ngModel)]="guest.foto"></ion-input>
   </ion-item>
 
+
   <form class="form">
-    <ion-button class="submit-btn" type="submit" expand="full" fill="clear" color="blue" (click)="addGuest()">
+    <ion-button class="submit-btn" type="submit" expand="full" fill="clear" color="blue" (click)="updateGuest()">
       <ion-icon name="checkmark" slot="start"></ion-icon>
-      Concluir cadastro
+      Alterar cadastro
     </ion-button>
   </form>
 </ion-content>
-
-<!---------------------------------------->
-<!--
-<ion-content padding>
-  <div class="box">
-    <div class="preview">
-      <img [src]="url" alt="">
-    </div>
-    <div class="uploadbtn">
-      <label>
-        <input class="submit-btn" type="submit" (change)="uploadImage($event)" type="file" class="image-upload" accept="image/*">
-      </label>
-    </div>
-  </div>
-</ion-content>-->

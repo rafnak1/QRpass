@@ -30,7 +30,7 @@ export class GuestRegister2Page implements OnInit {
   }
   
 
-  loading: boolean = false;;
+  loading: boolean = false;
   guest: Guest = {
     name: "",
     birthDate: null,
@@ -81,13 +81,11 @@ export class GuestRegister2Page implements OnInit {
   }
   
   addGuest() {
-    alert("oi");
     this.guest.foto =  '%2F' + 'ProfilePic' + this.guest.cpf;
     // For Uploading Image To Firebase
     var reader = new FileReader();
     reader.readAsDataURL(imgFile);
     reader.onload = (e:any) => { // called once readAsDataURL is completed
-      alert(imgFile);
       const fileraw = imgFile;
       console.log(fileraw)
       const filePath = '/Image/' + 'ProfilePic' + this.guest.cpf;

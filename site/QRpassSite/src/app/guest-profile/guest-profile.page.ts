@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GuestRegisterPage } from '../guest-register/guest-register.page';
 import { Guest, GuestService } from '../guest-service.service';
-import { ToastController, AlertController } from '@ionic/angular';
+import { ToastController, AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,26 +24,17 @@ export class GuestProfilePage implements OnInit {
     foto: ""
   };
 
-  public buildingList: any[] = [
-    {
-        id: 1,
-        label: 'Campus Gym!',
-        image: '/assets/img/gym.png',
-        //.... //any other properties
-    }
-    //..... //rest of buildings
-  ];
 
   constructor(
     private guestService: GuestService,
     private toastCtrl: ToastController, 
     private router: Router ,
+    private navCtrl: NavController,
     ) { 
       
     }
 
   ngOnInit() {
-    this.CpfLabel = this.guest.cpf;
   }
 
   ionViewWillEnter() {
@@ -55,6 +46,19 @@ export class GuestProfilePage implements OnInit {
       this.fotoUrl = this.guest.foto;
       });
       
+  }
+
+  GoUpdateGuestPage(){
+    this.navCtrl.navigateForward('/guestUpdate');
+  }
+
+  DeleteGuest(){
+    this.guestService.deleteGuest(this.guest.id).then(() => {
+      this.router.navigateByUrl('/login');
+      this.showToast('Convidado deletado');
+    }, err => {
+      this.showToast('Ocorreu um problema ao deletar o convidado :(. Tente novamente mais tarde');
+    });
   }
 
   showToast(msg) {

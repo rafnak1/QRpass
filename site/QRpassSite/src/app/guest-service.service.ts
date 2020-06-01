@@ -139,7 +139,6 @@ export class GuestService {
     if(id == "-1"){
       id = LoggedGuest.id;
     }
-    alert("Passei primeiro? id = "+id);
     return this.guestCollection.doc<Guest>(id).valueChanges().pipe(
       take(1),
       map(idea => {
