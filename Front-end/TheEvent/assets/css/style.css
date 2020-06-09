@@ -136,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-with-bg {
-  background-color: #f6f7fd;
+  background-color: #a90ae7;
 }
 
 /*--------------------------------------------------------------
@@ -297,7 +297,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu .menu-active a, .nav-menu a:hover {
-  color: #fff;
+  color: rgb(8, 8, 8);
 }
 
 .nav-menu > li {
