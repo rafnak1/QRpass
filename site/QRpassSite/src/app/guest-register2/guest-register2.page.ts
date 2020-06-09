@@ -102,7 +102,6 @@ export class GuestRegister2Page implements OnInit {
       console.log(err);
       this.showToast('Ocorreu um problema ao cadastrar o convidado :(. Tente novamente mais tarde');
     });
-    
   }
 
   goLoginPage() {

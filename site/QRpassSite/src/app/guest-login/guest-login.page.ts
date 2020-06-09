@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { GuestService, Guest } from 'src/app/guest-service.service';
+import { GuestRegisterPage } from '../guest-register/guest-register.page';
+import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 
 @Component({
   selector: 'app-guest-login',

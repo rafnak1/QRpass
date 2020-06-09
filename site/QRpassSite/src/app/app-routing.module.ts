@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './guest-register/guest-register.module#GuestRegisterPageModule' },
   { path: 'signup2', loadChildren: './guest-register2/guest-register2.module#GuestRegister2PageModule' },
   { path: 'main', loadChildren: './main/main.module#MainPageModule' },
+  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'GuestProfile', loadChildren: './guest-profile/guest-profile.module#GuestProfilePageModule' },
   { path: 'guestUpdate', loadChildren: './guest-update-profile/guest-update-profile.module#GuestUpdateProfilePageModule' },
   {
