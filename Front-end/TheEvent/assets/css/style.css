@@ -971,8 +971,9 @@ body.mobile-nav-active #mobile-nav-toggle {
   transition: all 0.4s ease-in-out;
 }
 
+/*--------------------------------------------------------------
 # Subscribe Section
---------------------------------------------------------------/
+--------------------------------------------------------------*/
 #subscribe {
   padding: 60px;
   background: url(../img/subscribe-bg.jpg) center center no-repeat;
