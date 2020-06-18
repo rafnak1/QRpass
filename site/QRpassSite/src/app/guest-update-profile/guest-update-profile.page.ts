@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Guest, GuestService } from '../guest-service.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -40,25 +40,25 @@ export class GuestUpdateProfilePage implements OnInit {
     private toastCtrl: ToastController, 
     private afs: AngularFirestore,
     private router: Router ,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private navCtrl: NavController,
   ) { }
 
   ngOnInit() {
-  }
-
-  ionViewWillEnter() {
     this.guestService.getGuest("-1").subscribe(resp => {
       this.guest = resp;
       this.fotoUrl = "https://firebasestorage.googleapis.com/v0/b/qrpass-9dcb0.appspot.com/o/Image"+resp.foto+"?alt=media";
       });
+  }
+
+  ionViewWillEnter() {
+    
       
   }
 
   updateGuest() {
-    alert(imgFile + " e ");
     if(imgFile != undefined){
       this.guest.foto =  '%2F' + 'ProfilePic' + this.guest.cpf;
-      alert("imagem nova!");
       var reader = new FileReader();
       reader.readAsDataURL(imgFile);
       reader.onload = (e:any) => { // called once readAsDataURL is completed
@@ -67,17 +67,16 @@ export class GuestUpdateProfilePage implements OnInit {
         const filePath = '/Image/' + 'ProfilePic' + this.guest.cpf;
         this.SaveImageRef(filePath, fileraw);
       }, error => {
-        alert("Ocorreu um problema ao atualizar os dados :(. Tente novamente mais tarde");
+        this.showToast('Ocorreu um problema ao atualizar os dados :(. Tente novamente mais tarde');
       }
     } else {
-      alert("Nao tem imagem nova");
     }
-    alert(this.guest.foto);
     this.guestService.updateGuest(this.guest).then(() => {
       this.showToast('Dados atualizados');
     }, err => {
       this.showToast('Ocorreu um problema ao atualizar os dados :(. Tente novamente mais tarde');
     });
+    this.navCtrl.navigateForward('/GuestProfile');
   }
 
   uploadImage(event) {

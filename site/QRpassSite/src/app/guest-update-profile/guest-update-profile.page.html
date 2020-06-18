@@ -1,4 +1,4 @@
-<ion-header>
+<!--<ion-header>
   <ion-toolbar color="primary">
     <ion-title>Update Profile</ion-title>
   </ion-toolbar>
@@ -48,4 +48,239 @@
       Alterar cadastro
     </ion-button>
   </form>
+</ion-content>-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Checkout - One Step Checkout , Responsive Bootstrap 4 template , bootstrap 4 starter template, bootstrap4 template, checkout template">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" lang="en" content="Checkout Bootstrap 4 pricing template , Responsive and Modern HTML5 Template made from bootstrap 4.">
+  <meta name="keywords" lang="en" content="pricing template, bootstrap 4 template,bootstrap 4 checkout template, responsive bootstrap 4 template, bootstrap 4, bootstraping, bootstrap4, oribitthemes">
+  <meta name="robots" content="index, follow">
+  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+  <meta name="description" content="">
+
+  <title>QR Pass BETA</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: TheEvent - v2.1.0
+  * Template URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<ion-header id="header"style="background-color:#060c22">
+  <div class="container" >
+
+    <div id="logo" class="pull-left">
+      <!-- Uncomment below if you prefer to use a text logo -->
+      <!-- <h1><a href="#intro">The<span>Event</span></a></h1>-->
+      <a href="index.html" class="scrollto"><img src="../assets/img/Logo.png" alt="" title="QRpass"></a>
+    </div>
+
+    <nav id="nav-menu-container">
+      <ul class="nav-menu">
+        <li class="menu-active"><a href="index.html">Home</a></li>
+        <li><a href="/home#about">Quem somos</a></li>
+        <li><a href="/home#speakers">Equipe</a></li>
+        <li><a href="/home#venue">Eventos</a></li>
+        <li><a href="/home#gallery">Galeria</a></li>
+        <li><a href="/home#contact">Contatos</a></li>
+        <li class="buy-tickets"><a href="/home">Fazer logout</a></li>
+      </ul>
+    </nav><!-- #nav-menu-container -->
+  </div>
+</ion-header><!-- End Header -->
+<!--
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="floating" color="primary">Nome</ion-label>
+    <ion-input [(ngModel)]="guest.name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" color="primary">Data de nascimento</ion-label>
+    <ion-input type="date" [(ngModel)]="guest.birthDate"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" color="primary">CPF</ion-label>
+    <ion-input [(ngModel)]="guest.cpf"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" color="primary">Telefone</ion-label>
+    <ion-input [(ngModel)]="guest.number"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" color="primary">Gênero</ion-label>
+    <ion-select [(ngModel)]="guest.gender" value="Feminino" ok-text="Selecionar" cancel-text="Cancelar">
+      <ion-select-option value="Feminino">Feminino</ion-select-option>
+      <ion-select-option value="Masculino">Masculino</ion-select-option>
+      <ion-select-option value="Diverso">Diverso</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+      <ion-img [src]="url" alt=""></ion-img>
+  </ion-item>
+  <ion-item>
+        <ion-input [id]="Foto" (change)="uploadImage($event)" type="file" class="image-upload" accept="image/*" [(ngModel)]="guest.foto"></ion-input>
+  </ion-item>
+
+  <form class="form">
+    <ion-button class="submit-btn" type="submit" expand="full" fill="clear" color="blue" (click)="addGuest()">
+      <ion-icon name="checkmark" slot="start"></ion-icon>
+      Concluir cadastro
+    </ion-button>
+  </form>
+  
+</ion-content> -->
+
+<ion-content class="ion-padding"  fullsceen="true">
+  <section id="checkout-banner">
+      <div class="container py-5 text-center">
+          <i class="fa fa-credit-card fa-3x text-light"></i>
+          <h2 class="my-3" style="color:#a90ae7">Área de atualização do cadastro para visitante de eventos</h2>
+      </div>
+  </section>
+  <section id="checkout-container">
+      <div class="container">
+          <div class="row py-5">
+              <div class="col-md-8 order-md-1">
+                  <form class="needs-validation" novalidate>
+                      
+                      
+                    <div class="mb-3">
+                        <label for="nome">Nome completo
+                        </label>
+                        <input type="text" class="form-control" id="name" placeholder="" value="" [(ngModel)]="guest.name" [ngModelOptions]="{standalone: true}" required>
+                        <div class="invalid-feedback">
+                            Por favor insira um nome
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="nome">Data de nascimento
+                      </label>
+                      <input type="date" class="form-control" id="birthDate" placeholder="" value="" [(ngModel)]="guest.birthDate" [ngModelOptions]="{standalone: true}" required>
+                      <div class="invalid-feedback">
+                          Por favor insira ama data válida
+                      </div>
+                  </div>
+
+                <div class="mb-3">
+                    <label for="nome">CPF
+                    </label>
+                    <input type="text" class="form-control" id="cpf" placeholder="" value="" [(ngModel)]="guest.cpf" [ngModelOptions]="{standalone: true}" required>
+                    <div class="invalid-feedback">
+                        Por favor insira um CPF válido
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="nome">Telefone
+                    </label>
+                    <input type="text" class="form-control" id="number" placeholder="" value="" [(ngModel)]="guest.number" [ngModelOptions]="{standalone: true}" required>
+                    <div class="invalid-feedback">
+                        Por favor insira um número de telefone válido
+                    </div>
+                </div>
+
+              <div class="mb-3">
+                <label for="country">Gênero</label>
+                  <select class="custom-select d-block w-100" [(ngModel)]="guest.gender" [ngModelOptions]="{standalone: true}" id="country" required>
+                      <option value="">Selecione...</option>
+                      <option> Feminino </option>
+                      <option> Masculino </option>
+                      <option> Diverso </option>
+                  </select>
+                  <div class="invalid-feedback">
+                      Por favor selecione um gênero
+                  </div>
+            </div>
+
+
+            <div class="mb-3">
+              <label for="nome">Foto de perfil
+                </label>
+                <!--<div class="mb-3" height="50">
+                  <ion-img [src]="url" alt="" height="60" width="50"></ion-img>
+                </div>-->
+                
+                <ion-input [id]="Foto" class="form-control" (change)="uploadImage($event)" type="file" class="image-upload" accept="image/*" [(ngModel)]="guest.foto" [ngModelOptions]="{standalone: true}"></ion-input>
+              <div class="invalid-feedback">
+                  Por favor insira um número de telefone válido
+              </div>
+          </div>
+                      <button  class="btn btn-primary btn-lg btn-block" type="submit" style="background-color:#a90ae7;border-color:#a90ae7" (click)="updateGuest()">
+                          <i class="fa"></i> Alterar cadastro. </button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </section>
+<!-- ======= About Section ======= -->
+<!-- End About Section -->
+
+<!-- ======= Speakers Section ======= -->
+<!-- End Speakers Section -->
+
+<!-- ======= Schedule Section ======= -->
+  <!-- End Schdule Day 1 -->
+
+  <!-- Schdule Day 2 -->
+
+  <!-- End Schdule Day 2 -->
+<!-- End Schedule Section -->
+
+<!-- ======= Venue Section ======= --><!-- End Venue Section -->
+
+<!-- ======= Hotels Section ======= -->
+<!-- End Contact Section -->
 </ion-content>
+
+
+<a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/wow/wow.min.js"></script>
+  <script src="../assets/vendor/venobox/venobox.min.js"></script>
+  <script src="../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../assets/vendor/superfish/superfish.min.js"></script>
+  <script src="../assets/vendor/hoverIntent/hoverIntent.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+</html>

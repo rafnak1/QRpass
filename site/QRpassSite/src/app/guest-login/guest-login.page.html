@@ -106,7 +106,7 @@
   <ion-content class="ion-padding" fullsceen="true">
   <div>
   		<div class="margem container">
-  			<h2 class="text-center">Área de login</h2>
+  			<h2 class="text-center" style="color:#a90ae7" >Área de login</h2>
         <form class="form" [formGroup]="validations_form" (ngSubmit)="loginUser(validations_form.value)" action="valida.php">
           <!--<label>Usuário</label>-->
   				<input type="text" name="email" formControlName="email" placeholder="Digite o seu email" class="form-control"><br>
@@ -114,8 +114,11 @@
           <!--<label>Senha</label>-->
   				<input type="password" name="senha" formControlName="password" placeholder="Digite a sua senha" class="form-control"><br>
 
-  				<input type="submit" name="btnLogin" value="Acessar" class="submit-btn btn btn-success btn-block" [disabled]="!validations_form.valid">
+  				<input type="submit" name="btnLogin" value="Acessar" class="submit-btn btn btn-success btn-block" style="background-color:#a90ae7;border-color:#a90ae7" [disabled]="!validations_form.valid">
           <label class="error-message">{{errorMessage}}</label>
+          <div class="row text-center" style="margin-top: 20px;">
+  					<h6 style="color:#a90ae7">Esqueceu a senha?</h6>
+          </div>
 
   				<div class="row text-center" style="margin-top: 20px;">
   					<h4>Você ainda não possui uma conta?  <a href="/signup">Crie grátis</a></h4>

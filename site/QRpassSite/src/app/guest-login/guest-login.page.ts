@@ -51,6 +51,8 @@ export class GuestLoginPage implements OnInit {
   
   
   loginUser(value) {
+    alert("mensagem");
+    /*
     this.authService.loginGuest(value)
       .then(res => {
         console.log(res);
@@ -58,8 +60,8 @@ export class GuestLoginPage implements OnInit {
         this.authService.getGuestID();
         this.navCtrl.navigateForward('/main');
       }, err => {
-        this.errorMessage = err.message;
-      });
+        this.errorMessage = "Email ou senha inválidos";
+      });*/
       
   }
 

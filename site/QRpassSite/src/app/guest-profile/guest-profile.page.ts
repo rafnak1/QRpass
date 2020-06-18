@@ -3,6 +3,7 @@ import { GuestRegisterPage } from '../guest-register/guest-register.page';
 import { Guest, GuestService } from '../guest-service.service';
 import { ToastController, AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-guest-profile',
@@ -40,9 +41,7 @@ export class GuestProfilePage implements OnInit {
   ionViewWillEnter() {
     this.guestService.getGuest("-1").subscribe(resp => {
       this.guest = resp;
-      alert(resp.foto);
       this.guest.foto = "https://firebasestorage.googleapis.com/v0/b/qrpass-9dcb0.appspot.com/o/Image"+resp.foto+"?alt=media";
-      alert(this.guest.foto);
       this.fotoUrl = this.guest.foto;
       });
       
@@ -50,6 +49,10 @@ export class GuestProfilePage implements OnInit {
 
   GoUpdateGuestPage(){
     this.navCtrl.navigateForward('/guestUpdate');
+  }
+
+  goMainPage(){
+    this.navCtrl.navigateForward('/main');
   }
 
   DeleteGuest(){

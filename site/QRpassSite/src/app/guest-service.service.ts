@@ -120,6 +120,10 @@ export class GuestService {
       }
     })
   }
+
+  tellLoggedGuestId(){
+    alert(LoggedGuest.id);
+  }
  
   guestDetails() {
     return this.afAuth.user
@@ -137,12 +141,16 @@ export class GuestService {
  
   getGuest(id: string): Observable<Guest[]>{
     if(id == "-1"){
+
       id = LoggedGuest.id;
+
     }
+    LoggedGuest.id = id;
     return this.guestCollection.doc<Guest>(id).valueChanges().pipe(
       take(1),
       map(idea => {
         idea.id = id;
+        LoggedGuest.id = id;
         return idea;
       })
     );
@@ -152,7 +160,6 @@ export class GuestService {
     if(id == "-1"){
       id = LoggedGuest.id;
     }
-    alert("Passei aqui");
     var resp = new Promise((resolve, reject) => {
       resp = this.Firebase.firestore().collection('guests').doc(id).get()
         .then(() => {
@@ -164,7 +171,6 @@ export class GuestService {
           reject();
         });
       });
-    alert(resp.cpf);
     return resp;
   }
  

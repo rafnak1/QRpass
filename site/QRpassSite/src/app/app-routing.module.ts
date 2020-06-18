@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./main-menu/main-menu.module').then( m => m.MainMenuPageModule)
   },
   {
     path: '',
@@ -22,13 +22,10 @@ const routes: Routes = [
   { path: 'signup', loadChildren: './guest-register/guest-register.module#GuestRegisterPageModule' },
   { path: 'signup2', loadChildren: './guest-register2/guest-register2.module#GuestRegister2PageModule' },
   { path: 'main', loadChildren: './main/main.module#MainPageModule' },
-  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+  { path: 'home', loadChildren: './main-menu/main-menu.module#MainMenuPageModule' },
   { path: 'GuestProfile', loadChildren: './guest-profile/guest-profile.module#GuestProfilePageModule' },
   { path: 'guestUpdate', loadChildren: './guest-update-profile/guest-update-profile.module#GuestUpdateProfilePageModule' },
-  {
-    path: 'main-menu',
-    loadChildren: () => import('./main-menu/main-menu.module').then( m => m.MainMenuPageModule)
-  },
+  { path: 'ticket', loadChildren: './ticket/ticket.module#TicketPageModule' },
   {
     path: 'guest-register2',
     loadChildren: () => import('./guest-register2/guest-register2.module').then( m => m.GuestRegister2PageModule)
@@ -44,6 +41,10 @@ const routes: Routes = [
   {
     path: 'guest-update-profile',
     loadChildren: () => import('./guest-update-profile/guest-update-profile.module').then( m => m.GuestUpdateProfilePageModule)
+  },
+  {
+    path: 'ticket',
+    loadChildren: () => import('./ticket/ticket.module').then( m => m.TicketPageModule)
   },
 ];
 

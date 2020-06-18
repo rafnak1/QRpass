@@ -1,9 +1,471 @@
-<ion-header>
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>MainMenu</ion-title>
+    <ion-title>
+      Blank
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>QR Pass BETA</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: TheEvent - v2.1.0
+  * Template URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+  <!-- ======= Header ======= -->
+  <ion-header id="header"style="background-color:#060c22">
+    <div class="container" >
+
+      <div id="logo" class="pull-left">
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="#intro">The<span>Event</span></a></h1>-->
+        <a href="index.html" class="scrollto"><img src="../assets/img/Logo.png" alt="" title="QRpass"></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="index.html">Home</a></li>
+          <li><a href="#about">Quem somos</a></li>
+          <li><a href="#speakers">Equipe</a></li>
+          <li><a href="#venue">Eventos</a></li>
+          <li><a href="#gallery">Galeria</a></li>
+          <li><a href="#contact">Contatos</a></li>
+          <li class="buy-tickets"><a href="/login">Fazer Login</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </ion-header><!-- End Header -->
+
+  <!-- ======= Intro Section ======= -->
 <ion-content>
+  <section id="intro">
+    <div class="intro-container  fadeIn">
+      <h1 class="mb-4 pb-0"> QR pass<br> <br>SEUS EVENTOS E CONFERÊNCIAS<br><span>EM SUAS MÃOS</span>  </h1>
+      <p class="mb-4 pb-0">Através de nossa solução QRpass, você pode ir aonde quiser.</p>
+      <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+      <a href="/signup" class="about-btn scrollto">Cadastrar-se</a>
+    </div>
+  </section><!-- End Intro Section -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>Quem somos</h2>
+            <p>Somos uma startup, com confiança no que fazemos, e gostamos de resolver problemas,
+            por isso criamos esta solução para facilitar as pessoas em admnistrar e entrar em
+            seus eventos de interesse.</p>
+          </div>
+          <div class="col-lg-3">
+            <h3>Onde estamos?</h3>
+            <p>Escola Politécnica, São Paulo</p>
+          </div>
+          <div class="col-lg-3">
+            <h3>Data</h3>
+            <p>2020</p>
+          </div>
+        </div>
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Speakers Section ======= -->
+    <section id="speakers" class=" fadeInUp">
+      <div class="container">
+        <div class="section-header">
+          <h2>Membros</h2>
+          <p>Aqui estão os membros do QRpass</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="../assets/img/speakers/Henrique.jpeg" alt="Speaker 1" class="img-fluid" width=400px>
+              <div class="details">
+                <h3><a href="speaker-details.html">Henrique D'amaral</a></h3>
+                <p>Back-Front</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="../assets/img/speakers/Igor.jpeg" alt="Speaker 2" class="img-fluid" width=400px>
+              <div class="details">
+                <h3><a href="speaker-details.html">Igor Souza Lima</a></h3>
+                <p>Front-End</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="../assets/img/speakers/Filipe.jpeg" alt="Speaker 3" class="img-fluid" width=400px>
+              <div class="details">
+                <h3><a href="speaker-details.html">Filipe Gaio</a></h3>
+                <p>Front-End</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="speaker">
+              <img src="../assets/img/speakers/Rafael.jpeg" alt="Speaker 4" class="img-fluid">
+              <div class="details">
+                <h3><a href="speaker-details.html">Rafael Nakata</a></h3>
+                <p>Raspberry</p>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+
+    </section><!-- End Speakers Section -->
+
+    <!-- ======= Venue Section ======= -->
+    <section id="venue" class=" fadeInUp">
+
+      <div class="container-fluid">
+
+        <div class="section-header">
+          <h2>Eventos</h2>
+          <p>Aqui você encontra informação de diversos eventos</p>
+        </div>
+
+        <div class="row no-gutters">
+          <div class="col-lg-6 venue-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0" allowfullscreen></iframe>
+          </div>
+
+          <div class="col-lg-6 venue-info">
+            <div class="row justify-content-center">
+              <div class="col-11 col-lg-8">
+                <h3>Centro de conferências, São Paulo</h3>
+                <p>Um do mais renomados locais de reuniões eentreterimento, o centro de conferências de São Paulo já foi paldo de diversas manifestações e reuniões que mudaram o rumo do país.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="container-fluid venue-gallery-container">
+        <div class="row no-gutters">
+
+          <div class="col-lg-3 col-md-4">
+            <div class="venue-gallery">
+              <a href="../assets/img/venue-gallery/1.jpg" class="venobox" data-gall="venue-gallery">
+                <img src="../assets/img/venue-gallery/1.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="venue-gallery">
+              <a href="../assets/img/venue-gallery/2.jpg" class="venobox" data-gall="venue-gallery">
+                <img src="../assets/img/venue-gallery/2.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="venue-gallery">
+              <a href="../assets/img/venue-gallery/3.jpg" class="venobox" data-gall="venue-gallery">
+                <img src="../assets/img/venue-gallery/3.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="venue-gallery">
+              <a href="../assets/img/venue-gallery/4.jpg" class="venobox" data-gall="venue-gallery">
+                <img src="../assets/img/venue-gallery/4.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="venue-gallery">
+              <a href="../assets/img/venue-gallery/5.jpg" class="venobox" data-gall="venue-gallery">
+                <img src="../assets/img/venue-gallery/5.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="venue-gallery">
+              <a href="../assets/img/venue-gallery/6.jpg" class="venobox" data-gall="venue-gallery">
+                <img src="../assets/img/venue-gallery/6.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="venue-gallery">
+              <a href="../assets/img/venue-gallery/7.jpg" class="venobox" data-gall="venue-gallery">
+                <img src="../assets/img/venue-gallery/7.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="venue-gallery">
+              <a href="../assets/img/venue-gallery/8.jpg" class="venobox" data-gall="venue-gallery">
+                <img src="../assets/img/venue-gallery/8.jpg" alt="" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- End Venue Section -->
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class=" fadeInUp">
+
+      <div class="container">
+        <div class="section-header">
+          <h2>Galeria</h2>
+          <p>Veja nossa galeria com os mais novos eventos</p>
+        </div>
+      </div>
+
+      <div class="owl-carousel gallery-carousel">
+        <a href="../assets/img/gallery/1.jpg" class="venobox" data-gall="gallery-carousel"><img src="../assets/img/gallery/1.jpg" alt=""></a>
+        <a href="../assets/img/gallery/2.jpg" class="venobox" data-gall="gallery-carousel"><img src="../assets/img/gallery/2.jpg" alt=""></a>
+        <a href="../assets/img/gallery/3.jpg" class="venobox" data-gall="gallery-carousel"><img src="../assets/img/gallery/3.jpg" alt=""></a>
+        <a href="../assets/img/gallery/4.jpg" class="venobox" data-gall="gallery-carousel"><img src="../assets/img/gallery/4.jpg" alt=""></a>
+        <a href="../assets/img/gallery/5.jpg" class="venobox" data-gall="gallery-carousel"><img src="../assets/img/gallery/5.jpg" alt=""></a>
+        <a href="../assets/img/gallery/6.jpg" class="venobox" data-gall="gallery-carousel"><img src="../assets/img/gallery/6.jpg" alt=""></a>
+        <a href="../assets/img/gallery/7.jpg" class="venobox" data-gall="gallery-carousel"><img src="../assets/img/gallery/7.jpg" alt=""></a>
+        <a href="../assets/img/gallery/8.jpg" class="venobox" data-gall="gallery-carousel"><img src="../assets/img/gallery/8.jpg" alt=""></a>
+      </div>
+
+    </section><!-- End Gallery Section -->
+
+   
+    <!-- ======= Subscribe Section ======= -->
+    <section id="subscribe">
+      <div class="container  fadeInUp">
+        <div class="section-header">
+          <h2>Novidades</h2>
+          <p>Coloque seu email para receber novidades da QRpass!</p>
+        </div>
+
+        <form method="POST" action="#">
+          <div class="form-row justify-content-center">
+            <div class="col-auto">
+              <input type="text" class="form-control" placeholder="Insira seu email">
+            </div>
+            <div class="col-auto">
+              <button type="submit">Increver</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </section><!-- End Subscribe Section -->
+
+          
+      <!-- Modal Order Form -->
+  
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="section-bg  fadeInUp">
+
+      <div class="container">
+
+        <div class="section-header">
+          <h2>Contato</h2>
+          <p>Entre em contato conosco!</p>
+        </div>
+
+        <div class="row contact-info">
+
+          <div class="col-md-4">
+            <div class="contact-address">
+              <i class="ion-ios-location-outline"></i>
+              <h3>Endereço</h3>
+              <address>Escola Politécnica da USP <br> São Paulo, São Paulo <br> Brasil</address>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-phone">
+              <i class="ion-ios-telephone-outline"></i>
+              <h3>Telefone</h3>
+              <p><a href="tel:+155895548855">+55 11 99999-9999</a></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-email">
+              <i class="ion-ios-email-outline"></i>
+              <h3>Email</h3>
+              <p><a href="mailto:info@example.com">qrpass.proj@gmail.com</a></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form">
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Seu Nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validate"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Assunto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+              <div class="validate"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Mensagem"></textarea>
+              <div class="validate"></div>
+            </div>
+            <div class="mb-3">
+              <div class="loading">Carregando</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Sua mensagem foi enviada. Obrigado!</div>
+            </div>
+            <div class="text-center"><button type="submit">Enviar Mensagem</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <img src="../assets/img/Logo.png" alt="TheEvenet">
+            <p>O QRpass é uma empresa desenvolvida por 4 alunos da USP de Engenharia de Computação. Nossa ideia é que você possa entrar em seus eventos favoritos apenas com o seu QRcode.</p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Links Uteis</h4>
+            <ul>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Home</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Sobre</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Serviços</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Termos de Serviço</a></li>
+              <li><i class="fa fa-angle-right"></i> <a href="#">Política de Privacidade</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Entre em Contato</h4>
+            <p>
+              Escola Politécnica da USP <br>
+              São Paulo, São Paulo<br>
+              Brasil <br>
+              <strong>Telefone:</strong> +55 11 99999-9999<br>
+              <strong>Email:</strong> qrpass.proj@gmail.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>QRpass</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+        All the links in the footer should remain intact.
+        You can delete the links only if you purchased the pro version.
+        Licensing information: https://bootstrapmade.com/license/
+        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=TheEvent
+      -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
 
 </ion-content>
+
+  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/jquery/jquery.min.js"></script>
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../assets/vendor/php-email-form/validate.js"></script>
+  <script src="../assets/vendor/wow/wow.min.js"></script>
+  <script src="../assets/vendor/venobox/venobox.min.js"></script>
+  <script src="../assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../assets/vendor/superfish/superfish.min.js"></script>
+  <script src="../assets/vendor/hoverIntent/hoverIntent.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../assets/js/main.js"></script>
+
+</html>
+

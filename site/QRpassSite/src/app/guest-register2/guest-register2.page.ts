@@ -96,7 +96,7 @@ export class GuestRegister2Page implements OnInit {
     this.guestService.addGuest(this.guest).then(() => {
       
       
-      this.router.navigateByUrl('/main');
+      this.router.navigateByUrl('/login');
       this.showToast('Convidado adicionado com sucesso!');
     }, err => {
       console.log(err);
